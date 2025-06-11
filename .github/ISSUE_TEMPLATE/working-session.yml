@@ -1,0 +1,396 @@
+name: 📢 Stakeholder Feedback Collection
+description: Systematically collect and track stakeholder feedback
+title: '[FEEDBACK] [Project Name] - [Feedback Topic]'
+labels: ['feedback', 'stakeholder-input', 'agency-response']
+assignees:
+  - co-design-lead
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📢 Stakeholder Feedback Collection Template
+        
+        Use this template to systematically collect, track, and analyze stakeholder feedback 
+        throughout the co-design process.
+        
+  - type: input
+    id: project_name
+    attributes:
+      label: Project Name
+      description: Name of the solution project
+      placeholder: e.g., HLS-LL Data Access Portal
+    validations:
+      required: true
+      
+  - type: input
+    id: feedback_topic
+    attributes:
+      label: Feedback Topic
+      description: Specific area or component requesting feedback on
+      placeholder: e.g., User Interface Design, Data Format Requirements, Workflow Integration
+    validations:
+      required: true
+      
+  - type: dropdown
+    id: collection_method
+    attributes:
+      label: Collection Method
+      description: How will feedback be collected?
+      options:
+        - Survey
+        - Interview
+        - Working Session
+        - Email
+        - Focus Group
+        - Demo Feedback Session
+        - Online Form
+        - Other
+    validations:
+      required: true
+      
+  - type: input
+    id: target_date
+    attributes:
+      label: Target Date
+      description: When feedback is needed by
+      placeholder: e.g., April 30, 2025
+    validations:
+      required: true
+      
+  - type: dropdown
+    id: status
+    attributes:
+      label: Current Status
+      description: Current status of feedback collection
+      options:
+        - Planning
+        - Active Collection
+        - Analysis
+        - Complete
+    validations:
+      required: true
+      
+  - type: textarea
+    id: primary_questions
+    attributes:
+      label: Primary Questions
+      description: Key questions that directly impact solution decisions
+      placeholder: |
+        - How well does the current user interface support your daily workflow?
+        - What data formats are most critical for your operational decisions?
+        - What would prevent adoption of this solution in your agency?
+        - How does this compare to your current tools and processes?
+      render: markdown
+    validations:
+      required: true
+      
+  - type: textarea
+    id: decision_impact
+    attributes:
+      label: Decision Impact
+      description: How this feedback will be used to make specific decisions
+      placeholder: |
+        This feedback will inform:
+        - Final user interface design decisions
+        - Data export format prioritization
+        - Training material development focus
+        - Implementation timeline adjustments
+      render: markdown
+    validations:
+      required: true
+      
+  - type: dropdown
+    id: urgency_level
+    attributes:
+      label: Urgency Level
+      description: How urgent is this feedback collection?
+      options:
+        - High
+        - Medium
+        - Low
+    validations:
+      required: true
+      
+  - type: textarea
+    id: urgency_rationale
+    attributes:
+      label: Urgency Rationale
+      description: Why this feedback is needed and why now
+      placeholder: |
+        This feedback is urgent because:
+        - Development decisions must be made by [date]
+        - Stakeholder availability window is limited
+        - Critical path dependency for project timeline
+      render: markdown
+    validations:
+      required: true
+      
+  - type: textarea
+    id: target_stakeholders
+    attributes:
+      label: Target Stakeholders
+      description: List primary and secondary respondents with rationale
+      placeholder: |
+        **Primary Respondents:**
+        - USDA Forest Service - Jane Smith - GIS Analyst - Critical for workflow integration
+        - EPA Region 4 - John Doe - Data Manager - Key user of export functions
+        
+        **Secondary Respondents:**
+        - NOAA - Mary Wilson - Research Scientist - Nice to have perspective
+        - USGS - Bob Johnson - IT Specialist - Technical implementation insight
+      render: markdown
+    validations:
+      required: true
+      
+  - type: input
+    id: target_response_rate
+    attributes:
+      label: Target Response Rate
+      description: Expected response rate and minimum viable responses
+      placeholder: e.g., 8 out of 12 stakeholders (67%), minimum 6 responses needed
+    validations:
+      required: true
+      
+  - type: textarea
+    id: collection_plan
+    attributes:
+      label: Detailed Collection Plan
+      description: Specific details about how feedback will be collected
+      placeholder: |
+        **Method:** Online survey followed by optional 30-minute interviews
+        
+        **Survey Distribution:**
+        - Personalized email invitations with project context
+        - 2-week response window
+        - Reminder emails at 1 week and 3 days before deadline
+        
+        **Interview Follow-up:**
+        - Optional 30-minute calls for detailed discussion
+        - Scheduled based on survey responses indicating interest
+        - Focus on clarifying complex feedback
+      render: markdown
+    validations:
+      required: true
+      
+  - type: textarea
+    id: timeline
+    attributes:
+      label: Collection Timeline
+      description: Detailed timeline for feedback collection process
+      placeholder: |
+        - **Preparation Complete:** March 15, 2025
+        - **Feedback Collection Starts:** March 20, 2025
+        - **Reminder Sent:** March 27, 2025
+        - **Collection Ends:** April 3, 2025
+        - **Analysis Complete:** April 10, 2025
+        - **Results Shared:** April 15, 2025
+      render: markdown
+    validations:
+      required: true
+      
+  - type: checkboxes
+    id: materials_needed
+    attributes:
+      label: Materials Needed Checklist
+      description: Check materials as they are prepared
+      options:
+        - label: Feedback survey/interview questions developed
+        - label: Background materials for stakeholders prepared
+        - label: Demo or prototype ready (if applicable)
+        - label: Context document explaining current solution state
+        - label: Survey platform configured and tested
+        - label: Interview scheduling system set up
+        - label: Data collection and analysis plan ready
+        
+  - type: textarea
+    id: survey_questions
+    attributes:
+      label: Survey Questions (if applicable)
+      description: List specific survey questions with response formats
+      placeholder: |
+        1. How well does the current interface support your workflow? (1-5 scale + comments)
+        2. Which data export formats are most important to you? (Multiple choice + other)
+        3. How often would you use this solution? (Daily/Weekly/Monthly/Rarely)
+        4. What barriers might prevent adoption in your agency? (Open text)
+        5. Overall satisfaction with solution approach? (1-5 scale + comments)
+      render: markdown
+      
+  - type: textarea
+    id: interview_guide
+    attributes:
+      label: Interview Guide (if applicable)
+      description: Structure for interviews including key questions
+      placeholder: |
+        **Opening (5 minutes):**
+        - Thank stakeholder for participation
+        - Explain interview purpose and confidentiality
+        - Confirm permission to record/take notes
+
+        **Main Questions (20 minutes):**
+        - Walk me through how you currently handle [relevant task]
+        - How would this solution fit into that workflow?
+        - What concerns do you have about implementation?
+        - What would make this solution more valuable?
+
+        **Closing (5 minutes):**
+        - Any additional thoughts or concerns?
+        - Next steps and timeline communication
+        - Thank you and follow-up process
+      render: markdown
+      
+  - type: textarea
+    id: response_tracking
+    attributes:
+      label: Response Tracking (Update During Collection)
+      description: Track response status for each stakeholder
+      placeholder: |
+        **Response Status:**
+        - [ ] Jane Smith (USDA) - Status: Not contacted | Contacted | Responded | Follow-up needed
+        - [ ] John Doe (EPA) - Status: Not contacted | Contacted | Responded | Follow-up needed
+        - [ ] Mary Wilson (NOAA) - Status: Not contacted | Contacted | Responded | Follow-up needed
+
+        **Response Summary:**
+        - Total stakeholders contacted: [Number]
+        - Responses received: [Number]
+        - Response rate: [Percentage]
+        - Follow-ups needed: [Number]
+      render: markdown
+      
+  - type: textarea
+    id: feedback_analysis
+    attributes:
+      label: Feedback Analysis (Complete After Collection)
+      description: Analyze and summarize collected feedback
+      placeholder: |
+        **Key Themes:**
+        - **Theme 1:** Interface simplicity concerns - **Frequency:** 6 out of 8 respondents
+        - **Theme 2:** Data format flexibility needs - **Frequency:** 5 out of 8 respondents
+        - **Theme 3:** Training requirements - **Frequency:** 4 out of 8 respondents
+
+        **Positive Feedback:**
+        - Strong support for real-time data access capability
+        - Appreciation for stakeholder engagement process
+        - Enthusiasm for workflow integration potential
+
+        **Concerns & Issues:**
+        - Learning curve for new interface
+        - Integration with legacy systems
+        - Bandwidth limitations for data downloads
+
+        **Suggestions for Improvement:**
+        - Simplified navigation options
+        - Multiple export format support
+        - Offline capability for remote areas
+
+        **Conflicting Feedback:**
+        - Some prefer detailed interface, others want simplified version
+        - Resolution approach: Offer customizable dashboard views
+      render: markdown
+      
+  - type: textarea
+    id: action_items
+    attributes:
+      label: Action Items from Feedback
+      description: Categorize actions based on feedback received
+      placeholder: |
+        **High Priority Actions:**
+        - [ ] Implement simplified navigation option - Rationale: 75% of users requested - Owner: [Name] - Due: [Date]
+        - [ ] Add CSV export format - Rationale: Critical for 3 major agencies - Owner: [Name] - Due: [Date]
+
+        **Medium Priority Actions:**
+        - [ ] Develop advanced user training materials - Owner: [Name] - Due: [Date]
+        - [ ] Research offline capability options - Owner: [Name] - Due: [Date]
+
+        **Future Consideration:**
+        - Mobile app development (mentioned by 2 users, not current priority)
+        - Advanced analytics features (interesting but beyond current scope)
+
+        **No Action Required:**
+        - Request for historical data back to 1980 (noted but outside project scope)
+        - Rationale: Would require significant additional resources and scope change
+      render: markdown
+      
+  - type: checkboxes
+    id: communication_results
+    attributes:
+      label: Communication of Results Checklist
+      description: Track communication of feedback results to stakeholders
+      options:
+        - label: Thank you message sent to all respondents
+        - label: Summary of feedback themes shared with stakeholders
+        - label: Explanation of how feedback will be used provided
+        - label: Timeline for implementation of changes shared
+        - label: Results presented to solution development team
+        - label: Feedback integrated into project planning
+        - label: SEP team briefed on outcomes
+        - label: Project documentation updated
+        
+  - type: textarea
+    id: impact_assessment
+    attributes:
+      label: Impact Assessment
+      description: Evaluate how feedback affected the solution and project
+      placeholder: |
+        **Solution Changes Made:**
+        - Added simplified dashboard view - Rationale: Based on 6 user requests for easier navigation
+        - Implemented CSV and GeoJSON export - Rationale: Critical for agency workflows
+
+        **Timeline Impact:**
+        - Original timeline: Beta release April 30
+        - Revised timeline: Beta release May 15
+        - **Reason:** Additional 2 weeks needed for export format implementation
+
+        **Resource Impact:**
+        - Additional development effort: 40 hours
+        - Additional testing required: 16 hours
+        - **Justification:** Changes address critical user needs and improve adoption likelihood
+
+        **Stakeholder Satisfaction:**
+        - Follow-up survey shows 90% satisfaction with feedback incorporation
+        - Increased enthusiasm for solution testing and implementation
+      render: markdown
+      
+  - type: textarea
+    id: lessons_learned
+    attributes:
+      label: Lessons Learned
+      description: Document what worked well and what could be improved
+      placeholder: |
+        **What Worked Well:**
+        - Personalized email approach achieved 80% response rate
+        - Combination of survey + optional interviews provided depth and breadth
+        - Clear timeline and expectations set good participation framework
+
+        **What Could Be Improved:**
+        - Earlier engagement would have caught some issues sooner
+        - More technical stakeholders needed for implementation feedback
+        - Better coordination with agency schedules for timing
+
+        **Recommendations for Future Feedback Collection:**
+        - Start feedback collection 1 month earlier in development cycle
+        - Include IT/technical staff in addition to end users
+        - Use agency-preferred communication channels when possible
+        - Provide multiple response options (phone, email, web form)
+      render: markdown
+      
+  - type: textarea
+    id: resources_links
+    attributes:
+      label: Resources & Links
+      description: Links to collection materials, results, and related issues
+      placeholder: |
+        **Collection Materials:**
+        - [Link to survey instrument]
+        - [Link to interview guide]
+        - [Link to background materials sent to stakeholders]
+
+        **Results:**
+        - [Link to raw feedback data]
+        - [Link to analysis summary]
+        - [Link to stakeholder communication]
+
+        **Related Issues:**
+        - Supports #[milestone-or-touchpoint-number]
+        - Informs #[future-decision-number]
+        - Related to #[other-feedback-collection]
+      render: markdown
