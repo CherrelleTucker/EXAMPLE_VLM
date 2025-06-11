@@ -16,6 +16,10 @@ jobs:
   setup_codesign_project:
     runs-on: ubuntu-latest
     name: Create Co-Design Project Structure
+    permissions:
+      issues: write
+      contents: read
+      pull-requests: write
     
     steps:
       - name: Checkout repository
@@ -24,6 +28,7 @@ jobs:
       - name: Create Project Setup Issue
         uses: actions/github-script@v7
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const projectName = '${{ github.event.inputs.project_name }}';
             const projectType = '${{ github.event.inputs.project_type }}';
@@ -71,6 +76,7 @@ jobs:
       - name: Create First Touchpoint Planning Issue
         uses: actions/github-script@v7
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const projectName = '${{ github.event.inputs.project_name }}';
             
@@ -81,20 +87,14 @@ jobs:
             **Phase:** Assessment
             **Timeline:** After solution prioritization
 
-            ---
-
             ### 📊 Stakeholder Information
-
             **Primary Agencies:**
             - [ ] [Agency Name] - [Contact Name, Role, Email]
             - [ ] [Agency Name] - [Contact Name, Role, Email]
 
             **Expected Participation:** [Number] stakeholders
 
-            ---
-
             ### 🎯 Objectives & Outcomes
-
             **Primary Objectives:**
             - [ ] Validate notional solution concept with agencies
             - [ ] Collect initial feedback on solution approach
@@ -111,10 +111,7 @@ jobs:
             **Time commitment:** 60-90 minutes for presentation and feedback session
             **Impact on workflow:** Opportunity to shape solution that will improve their operations
 
-            ---
-
             ### 📋 Preparation Checklist
-
             **Pre-Touchpoint Activities:**
             - [ ] Stakeholder contact list updated and verified
             - [ ] Solution concept presentation prepared (agency-friendly language)
@@ -124,45 +121,7 @@ jobs:
             - [ ] Calendar invitations sent with clear agenda
             - [ ] Internal team briefed on objectives and roles
 
-            ---
-
-            ### 📅 Execution Plan
-
-            **Meeting Structure:**
-            1. **Introduction & Context** (15 minutes)
-               - Welcome and introductions
-               - Meeting objectives and agenda overview
-               - Background on SNWG and solution prioritization
-
-            2. **Solution Concept Presentation** (30 minutes)
-               - Notional solution overview
-               - How it addresses identified agency needs
-               - Expected timeline and deliverables
-
-            3. **Feedback & Discussion** (30 minutes)
-               - Structured feedback collection
-               - Q&A session
-               - Clarification of agency requirements
-
-            4. **Wrap-up & Next Steps** (15 minutes)
-               - Summary of key feedback
-               - Next touchpoint preview
-               - Contact information exchange
-
-            ---
-
-            ### 📈 Expected Outcomes
-
-            **Key Questions to Address:**
-            - [ ] Does the solution concept align with agency operational needs?
-            - [ ] Are there missing requirements or considerations?
-            - [ ] What concerns do agencies have about implementation?
-            - [ ] How does this fit with existing agency tools and workflows?
-
-            ---
-
             ### 🔄 Next Steps
-
             **Immediate Actions:**
             - [ ] Schedule and conduct touchpoint
             - [ ] Document feedback and outcomes
@@ -182,6 +141,7 @@ jobs:
       - name: Create CoDesign 101 Working Session Issue
         uses: actions/github-script@v7
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const projectName = '${{ github.event.inputs.project_name }}';
             
@@ -192,12 +152,9 @@ jobs:
             **Session Number:** WS1
             **Timeline:** Pre-AtP DG (Authority to Proceed Decision Gate)
 
-            ---
-
             ### 🎯 Session Objectives
-
             **Primary Purpose:**
-            Establish the co-design framework for ${projectName}, identify the project team co-design lead, and develop the stakeholder engagement strategy for integration into the project plan.
+            Establish the co-design framework for ${projectName}, identify the project team co-design lead, and develop the stakeholder engagement strategy.
 
             **Expected Outcomes:**
             - [ ] Solution project team co-design lead identified and confirmed
@@ -206,19 +163,10 @@ jobs:
             - [ ] Communication protocols established with SEP team
             - [ ] Integration plan for SEP section of project plan created
 
-            **Success Criteria:**
-            - All team members understand their roles in the co-design process
-            - Clear timeline established with specific milestones and touchpoints
-            - Stakeholder engagement strategy approved by all participants
-            - Next steps clearly defined and assigned
-
-            ---
-
             ### 👥 Participants
-
             **Internal Team:**
-            - [ ] [Project Lead Name] - Project Lead - Overall coordination and decision authority
-            - [ ] [Technical Lead Name] - Technical Lead - Solution architecture and requirements
+            - [ ] [Project Lead Name] - Project Lead - Overall coordination
+            - [ ] [Technical Lead Name] - Technical Lead - Solution architecture
             - [ ] [Team Member Name] - [Role] - [Responsibility in session]
 
             **SEP Team:**
@@ -226,82 +174,21 @@ jobs:
             - [ ] CoDesign Lead - Methodology and best practices facilitation
             - [ ] Project Coordinator - Process facilitation and documentation
 
-            **Total Expected Participants:** 5-8 people
-
-            ---
-
             ### 📋 Pre-Session Preparation Checklist
-
             - [ ] Session agenda prepared with detailed timing
             - [ ] SNWG co-design methodology materials compiled
             - [ ] Stakeholder identification worksheet prepared
             - [ ] Project timeline template ready for completion
             - [ ] SEP integration guidelines reviewed
             - [ ] Meeting platform tested (Zoom/Teams)
-            - [ ] Screen sharing and collaborative tools prepared
             - [ ] Invitations sent with agenda and background materials
-            - [ ] Co-design lead role description prepared
-            - [ ] Communication protocol templates ready
-
-            ---
-
-            ### 📅 Detailed Session Agenda
-
-            **Total Duration:** 2 hours
-
-            **Opening (15 minutes)**
-            - Welcome and introductions (5 min)
-            - Session objectives and agenda overview (5 min)
-            - Ground rules and expectations (5 min)
-
-            **CoDesign 101 Overview (30 minutes)**
-            - SNWG co-design principles and methodology (15 min)
-            - Benefits of stakeholder engagement for solution success (10 min)
-            - Q&A and discussion (5 min)
-
-            **Break (10 minutes)**
-
-            **Working Session Activities (45 minutes)**
-            - Co-design lead identification and confirmation (15 min)
-            - Stakeholder mapping exercise (15 min)
-            - Timeline development workshop (15 min)
-
-            **Integration Planning (15 minutes)**
-            - SEP section of project plan integration (10 min)
-            - Communication protocols establishment (5 min)
-
-            **Wrap-up (5 minutes)**
-            - Summary of accomplishments
-            - Action items assignment
-            - Next steps confirmation
-
-            ---
-
-            ### ✅ CoDesign 101 Session Activities
-
-            **Key Activities to Complete:**
-            - [ ] Review co-design principles and methodology
-            - [ ] Identify solution project team co-design lead
-            - [ ] Discuss stakeholder engagement strategy for this project
-            - [ ] Plan integration with SEP section of project plan
-            - [ ] Establish communication protocols with SEP team
-            - [ ] Review SNWG co-design best practices and templates
-
-            ---
 
             ### 🔄 Follow-up Actions
-
             **Immediate (Within 48 hours):**
             - [ ] Send session summary to all participants
             - [ ] Update project plan with co-design strategy
             - [ ] Distribute completed worksheets and templates
-            - [ ] Schedule Stakeholder Review & Worksheet working session
-
-            **Short-term (Within 1 week):**
-            - [ ] Complete action items assigned to session facilitator
-            - [ ] Begin stakeholder contact list development
-            - [ ] Prepare materials for next working session
-            - [ ] Update GitHub repository with session outcomes`;
+            - [ ] Schedule Stakeholder Review & Worksheet working session`;
 
             const workingSessionIssue = await github.rest.issues.create({
               owner: context.repo.owner,
@@ -316,6 +203,7 @@ jobs:
       - name: Create Initial Milestone Issue
         uses: actions/github-script@v7
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const projectName = '${{ github.event.inputs.project_name }}';
             
@@ -325,23 +213,14 @@ jobs:
             **Milestone Type:** Process Establishment
             **Target Date:** Within 4 weeks of project initiation
 
-            ---
-
             ### 🎯 Milestone Overview
-
             **Description:**
             This milestone marks the successful establishment of the co-design framework for ${projectName}, including stakeholder identification, team structure, and initial engagement strategy.
-
-            **Achievement Significance:**
-            Completion of this milestone ensures the project has a solid foundation for effective stakeholder engagement throughout the solution development process.
 
             **Stakeholder Impact:**
             Agencies will have clear understanding of how they can engage with the solution development process and what value they will receive from participation.
 
-            ---
-
             ### 📊 Completion Criteria
-
             **Framework Components:**
             - [ ] Co-design lead identified and onboarded
             - [ ] Stakeholder contact list completed and verified
@@ -355,32 +234,14 @@ jobs:
             - [ ] GitHub repository configured with templates and automation
             - [ ] Initial touchpoint materials prepared
 
-            **Team Readiness:**
-            - [ ] All team members understand co-design process
-            - [ ] Roles and responsibilities clearly defined
-            - [ ] Communication channels established
-            - [ ] SEP team integration confirmed
-
-            ---
-
             ### 📈 Success Metrics
-
             **Process Metrics:**
             - Co-design lead successfully identified and confirmed
             - 100% of working sessions completed as planned
             - All stakeholder agencies contacted and engagement confirmed
             - SEP team integration fully activated
 
-            **Quality Indicators:**
-            - Team satisfaction with co-design process setup
-            - Stakeholder positive response to initial outreach
-            - Clear timeline and milestones established
-            - Communication protocols working effectively
-
-            ---
-
             ### 🔄 Next Steps
-
             **Immediate Next Milestone:**
             - **Type:** First Touchpoint Execution
             - **Target Date:** 2-4 weeks after framework establishment
@@ -411,11 +272,5 @@ jobs:
           echo "✅ Touchpoint 1: Solution Validation Planning"
           echo "✅ CoDesign 101 Working Session"
           echo "✅ Co-Design Framework Milestone"
-          echo ""
-          echo "Next steps:"
-          echo "1. Review and assign the created issues"
-          echo "2. Schedule the CoDesign 101 working session"
-          echo "3. Begin stakeholder identification process"
-          echo "4. Customize issue templates as needed for your project"
           echo ""
           echo "Your professional co-design pipeline is ready! 🚀"
