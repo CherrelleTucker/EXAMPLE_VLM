@@ -36,7 +36,7 @@ jobs:
                 title: `[SETUP] Stakeholder Identification and Mapping - ${{ github.event.inputs.solution_name }}`,
                 body: `## Stakeholder Identification for ${{ github.event.inputs.solution_name }}
 
-**Project Phase:** ${{ github.event.inputs.project_phase }}
+Project Phase: ${{ github.event.inputs.project_phase }}
 
 Use this issue to identify and map stakeholders for your co-design process.
 
@@ -65,16 +65,16 @@ After completing stakeholder mapping:
 2. Plan Working Session 1 with your implementation team
 3. Begin outreach to high-priority stakeholders
 
-**Need help?** Check the [Co-Design Guide](./docs/CODESIGN-GUIDE.md) or contact the SEP team.`,
+Need help? Check the [Co-Design Guide](./docs/CODESIGN-GUIDE.md) or contact the SEP team.`,
                 labels: ['stakeholder-mapping', 'setup', 'high-priority']
               },
               {
                 title: `[TOUCHPOINT] TP1: Solution Introduction - ${{ github.event.inputs.solution_name }}`,
                 body: `## Touchpoint 1: Solution Introduction
 
-**Solution:** ${{ github.event.inputs.solution_name }}  
-**Project Phase:** ${{ github.event.inputs.project_phase }}  
-**Target Date:** [Set based on your project timeline]
+Solution: ${{ github.event.inputs.solution_name }}  
+Project Phase: ${{ github.event.inputs.project_phase }}  
+Target Date: [Set based on your project timeline]
 
 ### 🎯 Objectives:
 - Introduce ${{ github.event.inputs.solution_name }} solution to assessment stakeholders
@@ -121,7 +121,7 @@ Based on stakeholder responses:
 3. **Update stakeholder map** with response and interest levels
 4. **Schedule follow-up calls** with high-priority interested stakeholders
 
-**Need help with stakeholder communication?** Contact the SEP Co-Design team.`,
+Need help with stakeholder communication? Contact the SEP Co-Design team.`,
                 labels: ['touchpoint', 'planning', 'touchpoint-1', 'high-priority']
               },
               {
@@ -172,17 +172,17 @@ Your co-design workspace for **${{ github.event.inputs.solution_name }}** is rea
 
 ## 🎯 Timeline Guidance:
 
-**This Week:**
+This Week:
 - Complete stakeholder identification and mapping
 - Review assessment data and solution scope
 - Plan Touchpoint 1 approach and timeline
 
-**Next 2-4 Weeks:**
+Next 2-4 Weeks:
 - Execute Touchpoint 1 (Solution Introduction)
 - Plan and schedule Working Session 1
 - Begin regular stakeholder engagement
 
-**Ongoing:**
+Ongoing:
 - Follow the 8-touchpoint co-design process
 - Maintain regular stakeholder communication
 - Document feedback and adjust approach as needed
@@ -195,10 +195,10 @@ Your co-design workspace for **${{ github.event.inputs.solution_name }}** is rea
 - **Setup Date:** $(date +%Y-%m-%d)
 - **Co-Design Status:** Ready to Begin
 
-**Ready to start co-designing?** Begin with the stakeholder identification issue above!
+Ready to start co-designing? Begin with the stakeholder identification issue above!
 
 ---
-*This setup was automated using the SNWG Co-Design Repository Template. You can create additional issues using the templates in .github/ISSUE_TEMPLATES/ as needed.*`,
+This setup was automated using the SNWG Co-Design Repository Template. You can create additional issues using the templates in .github/ISSUE_TEMPLATES/ as needed.*`,
                 labels: ['setup-complete', 'information', 'high-priority']
               }
             ];
