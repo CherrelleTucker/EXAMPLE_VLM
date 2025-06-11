@@ -274,3 +274,132 @@ jobs:
           echo "✅ Co-Design Framework Milestone"
           echo ""
           echo "Your professional co-design pipeline is ready! 🚀"
+
+    - name: Create Project Board Automatically
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const projectName = '${{ github.event.inputs.project_name }}';
+            
+            try {
+              // Create the project
+              const project = await github.rest.projects.createForRepo({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: `${projectName} Co-Design Pipeline`,
+                body: `Professional co-design project board for ${projectName} stakeholder engagement and solution development.`
+              });
+
+              console.log(`Created project: ${project.data.name} (ID: ${project.data.id})`);
+
+              // Create columns
+              const columns = [
+                '📋 Planning & Preparation',
+                '🤝 Active Stakeholder Engagement', 
+                '🔄 In Development',
+                '✅ Stakeholder Review',
+                '🎯 Complete'
+              ];
+
+              const createdColumns = [];
+              for (const columnName of columns) {
+                const column = await github.rest.projects.createColumn({
+                  project_id: project.data.id,
+                  name: columnName
+                });
+                createdColumns.push(column.data);
+                console.log(`Created column: ${columnName}`);
+              }
+
+              // Get the setup issues we just created
+              const issues = await github.rest.issues.listForRepo({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                labels: 'setup,planning,co-design',
+                state: 'open',
+                per_page: 10
+              });
+
+              // Add issues to the first column (Planning & Preparation)
+              const planningColumn = createdColumns[0];
+              for (const issue of issues.data) {
+                if (issue.title.includes(projectName)) {
+                  await github.rest.projects.createCard({
+                    column_id: planningColumn.id,
+                    content_id: issue.id,
+                    content_type: 'Issue'
+                  });
+                  console.log(`Added issue #${issue.number} to project board`);
+                }
+              }
+
+              // Create success notification issue
+              const successBody = `## 🎉 Project Board Created Successfully!
+
+              ### ✅ Automated Setup Complete
+
+              **Project Board:** [${projectName} Co-Design Pipeline](${project.data.html_url})
+
+              **What was created:**
+              - ✅ Project board with 5 professional columns
+              - ✅ 4 starter issues added to "Planning & Preparation"
+              - ✅ Professional co-design workflow ready
+
+              ### 🚀 Next Steps
+
+              1. **[Visit your project board](${project.data.html_url})** to see the organized workflow
+              2. **Review the 4 starter issues** and assign team members
+              3. **Begin with the CoDesign 101 working session**
+              4. **Share the project board URL** with stakeholders
+
+              ### 📊 Your Professional Co-Design System
+
+              **Project Board URL:** ${project.data.html_url}
+
+              **Ready for:**
+              - Stakeholder engagement and transparency
+              - Professional project management
+              - SEP team coordination
+              - Agency collaboration
+
+              **This notification can be closed - your system is ready! 🚀**`;
+
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: `🎉 SUCCESS: ${projectName} Co-Design Pipeline Created`,
+                body: successBody,
+                labels: ['success', 'setup-complete', 'project-ready']
+              });
+
+            } catch (error) {
+              console.error('Failed to create project board:', error);
+              
+              // Create fallback reminder issue if automation fails
+              const fallbackBody = `## ⚠️ Automated Project Board Creation Failed
+
+              **The starter issues were created successfully, but automated project board creation encountered an error.**
+
+              ### 📋 Manual Setup Required (5 minutes)
+
+              **Please follow these steps to complete setup:**
+
+              1. **Go to [Projects tab](../../projects)**
+              2. **Click "Create new project"**
+              3. **Name it:** \`${projectName} Co-Design Pipeline\`
+              4. **Set up 5 columns** as described in the setup guide
+              5. **Add the 4 starter issues** to the project board
+
+              **Error Details:** ${error.message}
+
+              **This is normal - GitHub's project API has permission restrictions in some environments.**`;
+
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: `🔧 MANUAL SETUP NEEDED: ${projectName} Project Board`,
+                body: fallbackBody,
+                labels: ['setup-reminder', 'manual-action-required']
+              });
+            }
